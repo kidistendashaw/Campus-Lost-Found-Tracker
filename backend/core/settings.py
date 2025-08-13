@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "corsheaders",
+    "items",
 ]
 
 MIDDLEWARE = [
@@ -102,7 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
