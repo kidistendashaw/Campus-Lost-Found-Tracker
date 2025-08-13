@@ -1,16 +1,11 @@
-from ninja import NinjaAPI, Schema, File
-from ninja.files import UploadedFile
-from .models import Item, ItemImage
-
-api = NinjaAPI()
-
-
 class ItemSchema(Schema):
     id: int
     title: str
     description: str
     status: str
     location: str
+    latitude: float | None
+    longitude: float | None
 
 
 @api.post("/items/", response=ItemSchema)
@@ -20,10 +15,17 @@ def create_item(
     description: str,
     status: str,
     location: str,
+    latitude: float = None,
+    longitude: float = None,
     image: UploadedFile = File(...),
 ):
     item = Item.objects.create(
-        title=title, description=description, status=status, location=location
+        title=title,
+        description=description,
+        status=status,
+        location=location,
+        latitude=latitude,
+        longitude=longitude,
     )
     ItemImage.objects.create(item=item, image=image)
     return item

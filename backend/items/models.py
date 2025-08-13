@@ -10,6 +10,8 @@ class Item(models.Model):
     description = models.TextField()
     status = models.CharField(max_length=5, choices=STATUS_CHOICES)
     location = models.CharField(max_length=255)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
